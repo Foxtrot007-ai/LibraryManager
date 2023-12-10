@@ -2,7 +2,9 @@ package LibraryManager;
 
 public class LibraryApplication {
 	MainWindow mainWindow;
+	DataBaseConnector dataBase;
 	public LibraryApplication(){
-		mainWindow = new MainWindow();
+		dataBase = new DataBaseConnector("librarydatabase","root","root");
+		mainWindow = new MainWindow(dataBase);
 	}
 }

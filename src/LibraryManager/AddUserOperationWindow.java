@@ -1,9 +1,12 @@
 package LibraryManager;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+
 import javax.swing.*;
 
 public class AddUserOperationWindow extends JFrame {
+	public DataBaseConnector connection;
 	//add user UI
 	public JTextField firstNameTextField = new JTextField();
 	public JTextField lastNameTextField = new JTextField();
@@ -27,6 +30,13 @@ public class AddUserOperationWindow extends JFrame {
 		this.setVisible(false);
 	}
 	
+	private Action addUserAction = new AbstractAction("Add user") {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	    	connection.addUserQuery(firstNameTextField.getText(), lastNameTextField.getText(), peselTextField.getText());
+	    }
+	};
+	
 	public void initializeAddUserComponents() {
 		firstNameLabel.setBounds(100, 50, 200, 50);
 		firstNameTextField.setBounds(100, 100, 200, 50);
@@ -38,6 +48,7 @@ public class AddUserOperationWindow extends JFrame {
 		peselTextField.setBounds(100, 300, 200, 50);
 		
 		addButton.setBounds(100, 350, 200, 50);
+		addButton.addActionListener(addUserAction);
 		
 		this.add(firstNameLabel);
 		this.add(firstNameTextField);
@@ -51,7 +62,8 @@ public class AddUserOperationWindow extends JFrame {
 		this.add(addButton);
 	}
 	
-	public AddUserOperationWindow() {
+	public AddUserOperationWindow(DataBaseConnector connector) {
+		this.connection = connector; 
 		initializeThisFrame();
 		initializeAddUserComponents();
 	}
