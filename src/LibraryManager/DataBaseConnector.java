@@ -2,7 +2,9 @@ package LibraryManager;
 
 import java.sql.*;
 import java.util.List;
-import java.util.Vector; 
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel; 
 
 class DataBaseConnector{
 	Connection con;
@@ -22,50 +24,50 @@ class DataBaseConnector{
 					+ LastName + "', '"
 					+ Pesel + "');";
 		try{  
-			ResultSet rs = stmt.executeQuery(query);  
+			stmt.executeUpdate(query);  
 		}catch(Exception e){ System.out.println(e);}  
 	}
 	
 	public void deleteUserQuery(String UserId) {
 		String query = "DELETE FROM users WHERE PersonID='" + UserId + "'";
 		try{  
-			ResultSet rs = stmt.executeQuery(query);  
+			stmt.executeUpdate(query);   
 		}catch(Exception e){ System.out.println(e);} 
 	}
 	
 	public void addBookQuery(String BookTitle) {
 		String query = "INSERT INTO books (BookTitle) VALUES ('"+ BookTitle +"')";
 		try{  
-			ResultSet rs = stmt.executeQuery(query);  
+			stmt.executeUpdate(query);   
 		}catch(Exception e){ System.out.println(e);}  
 	}
 	
 	public void deleteBookQuery(String BookId) {
 		String query = "DELETE FROM books WHERE BookID='" + BookId + "'";
 		try{  
-			ResultSet rs = stmt.executeQuery(query);  
+			stmt.executeUpdate(query);   
 		}catch(Exception e){ System.out.println(e);} 
 	}
 	
 	public void addRentalQuery(String UserId ,String BookId) {
 		String query = "INSERT INTO rentals (UserID, BookID, RentDate, DayLimit) VALUES ('"
-					 + UserId +"'"
-					 + BookId +"'2001-07-14', '14')";
+					 + UserId +"','"
+					 + BookId +"', '2001-07-14', '14')";
 		try{  
-			ResultSet rs = stmt.executeQuery(query);  
+			stmt.executeUpdate(query);    
 		}catch(Exception e){ System.out.println(e);}  
 	}
 	
 	public void deleteRentalQuery(String BookId) {
 		String query = "DELETE FROM rentals WHERE BookID='" + BookId + "'";
 		try{  
-			ResultSet rs = stmt.executeQuery(query);  
+			stmt.executeUpdate(query);    
 		}catch(Exception e){ System.out.println(e);} 
 	}
 	
-	public Vector<Vector<String>> showRentalsQuery() {
-		String query = "Select * from rentals";
-		Vector<Vector<String>> result = new Vector<Vector<String>>();
+	public DefaultTableModel showRentalsQuery() {
+		String query = "Select * from rentals"; 
+		Vector<Vector<String>> resultVector = new Vector<Vector<String>>();
 		try{ 
 			ResultSet rs = stmt.executeQuery(query);  
 			while(rs.next()) {
@@ -74,15 +76,23 @@ class DataBaseConnector{
 				temp.add(rs.getString(2));
 				temp.add(rs.getString(3));
 				temp.add(rs.getString(4));
-				result.add(temp);
+				resultVector.add(temp);
 			}
 		}catch(Exception e){ System.out.println(e);}
-		return result;
+		
+		DefaultTableModel resultModel = new DefaultTableModel();
+		Vector<String> colNames = new Vector<String>();
+		colNames.add("UserId");
+		colNames.add("BookId");
+		colNames.add("Rent Date");
+		colNames.add("Limit");
+		resultModel.setDataVector(resultVector, colNames);
+		return resultModel;
 	}
 	
-	public Vector<Vector<String>> showUsersQuery() {
+	public DefaultTableModel showUsersQuery() {
 		String query = "Select * from users";
-		Vector<Vector<String>> result = new Vector<Vector<String>>();
+		Vector<Vector<String>> resultVector = new Vector<Vector<String>>();
 		try{ 
 			ResultSet rs = stmt.executeQuery(query);  
 			while(rs.next()) {
@@ -91,24 +101,38 @@ class DataBaseConnector{
 				temp.add(rs.getString(2));
 				temp.add(rs.getString(3));
 				temp.add(rs.getString(4));
-				result.add(temp);
+				resultVector.add(temp);
 			}
 		}catch(Exception e){ System.out.println(e);}
-		return result;
+		
+		DefaultTableModel resultModel = new DefaultTableModel();
+		Vector<String> colNames = new Vector<String>();
+		colNames.add("UserId");
+		colNames.add("FirstName");
+		colNames.add("LastName");
+		colNames.add("Pesel");
+		resultModel.setDataVector(resultVector, colNames);
+		return resultModel;
 	}
 	
-	public Vector<Vector<String>> showBooksQuery() {
+	public DefaultTableModel showBooksQuery() {
 		String query = "Select * from books";
-		Vector<Vector<String>> result = new Vector<Vector<String>>();
+		Vector<Vector<String>> resultVector = new Vector<Vector<String>>();
 		try{ 
 			ResultSet rs = stmt.executeQuery(query);  
 			while(rs.next()) {
 				Vector<String> temp = new Vector<String>();
 				temp.add(rs.getString(1));
 				temp.add(rs.getString(2));
-				result.add(temp);
+				resultVector.add(temp);
 			}
 		}catch(Exception e){ System.out.println(e);}
-		return result;
+		
+		DefaultTableModel resultModel = new DefaultTableModel();
+		Vector<String> colNames = new Vector<String>();
+		colNames.add("BookId");
+		colNames.add("BookTitle");
+		resultModel.setDataVector(resultVector, colNames);
+		return resultModel;
 	}
 }  

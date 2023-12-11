@@ -2,7 +2,11 @@ package LibraryManager;
 
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;  
+import java.util.Vector;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;  
 
 public class MainWindow extends JFrame{
 	//data base
@@ -43,13 +47,13 @@ public class MainWindow extends JFrame{
 	public JFrame returnBookOperationWindow;
 	
 	//list
-	public int listHeight = 1080;
-	public int listWidth = 800;
+	public int listHeight = 1000;
+	public int listWidth = 1000;
 	public int listY = 10;
 	public int listX = 800;
 	
-	public JList listToShow = new JList();
-	public JScrollPane listScroller = new JScrollPane(listToShow);
+	public JTable tableToShow = new JTable();
+	public JScrollPane listScroller = new JScrollPane(tableToShow);
 	public String[] testUserList = {"Adam Nowak", "Dawid Nowak", "Norbert Nowak"};
 	public String[] testBookList = {"Lord of the rings", "Hobbit", "Simimarilion"};
 	public String[] testHistoryList = {"User added", "User deleted", "Book added"};
@@ -108,28 +112,33 @@ public class MainWindow extends JFrame{
 	private Action loadChangeHistoryList = new AbstractAction("Load Change History") {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-	    	listToShow.setListData(testHistoryList);
 	    }
 	};
 	
 	private Action loadBookList = new AbstractAction("Load Books") {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-	    	listToShow.setListData(testBookList);
+	    	DefaultTableModel resultModel = connector.showBooksQuery();
+	    	tableToShow.setModel(resultModel);
+	    	tableToShow.repaint();
 	    }
 	};
 	
 	private Action loadUserList = new AbstractAction("Load Users") {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-	    	listToShow.setListData(testUserList);
+	    	DefaultTableModel resultModel = connector.showUsersQuery();
+	    	tableToShow.setModel(resultModel);
+	    	tableToShow.repaint();
 	    }
 	};
 	
 	private Action loadRentList = new AbstractAction("Show Rentals") {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-	    	listToShow.setListData(testRentList);
+	    	DefaultTableModel resultModel = connector.showRentalsQuery();
+	    	tableToShow.setModel(resultModel);
+	    	tableToShow.repaint();
 	    }
 	};
 	
@@ -173,9 +182,8 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void initializeList() {
-		listToShow.setBounds(listX, listY, listWidth, listHeight);
+		tableToShow.setBounds(listX, listY, listWidth, listHeight);
 		listScroller.setBounds(listX, listY, listWidth, listHeight);
-		listToShow.setListData(testUserList);
 	}
 	
 	public void addAllToFrame() {
@@ -192,7 +200,7 @@ public class MainWindow extends JFrame{
 		this.add(bookListShowButton);
 		this.add(rentListShowButton);
 		
-		this.add(listToShow);
+		//this.add(tableToShow);
 		this.add(listScroller);
 	}
 	
