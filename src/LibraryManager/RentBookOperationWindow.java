@@ -7,11 +7,13 @@ import javax.swing.*;
 
 public class RentBookOperationWindow extends JFrame {
 	public DataBaseConnector connection;
-	//delete rental UI
+	//rental UI
 	public JTextField userIdTextField = new JTextField();
 	public JLabel userIdLabel = new JLabel("User Id:");
 	public JTextField bookIdTextField = new JTextField();
 	public JLabel bookIdLabel = new JLabel("Book Id:");
+	public JTextField limitTextField = new JTextField();
+	public JLabel limitLabel = new JLabel("For how many days?:");
 	public JButton rentButton = new JButton("Rent Book");
 	
 	public void initializeThisFrame() {
@@ -25,14 +27,14 @@ public class RentBookOperationWindow extends JFrame {
 		});
 		
 		this.setLayout(null);
-		this.setSize(400,400);
+		this.setSize(400,500);
 		this.setVisible(false);
 	}
 	
 	private Action rentAction = new AbstractAction("rent book") {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-	    	connection.addRentalQuery(userIdTextField.getText(), bookIdTextField.getText());
+	    	connection.addRentalQuery(userIdTextField.getText(), bookIdTextField.getText(), limitTextField.getText());
 	    }
 	};
 	
@@ -41,12 +43,16 @@ public class RentBookOperationWindow extends JFrame {
 		userIdTextField.setBounds(100, 100, 200, 50);
 		bookIdLabel.setBounds(100, 150, 200, 50);
 		bookIdTextField.setBounds(100, 200, 200, 50);
-		rentButton.setBounds(100, 250, 200, 70);
+		limitLabel.setBounds(100, 250, 200, 50);
+		limitTextField.setBounds(100, 300, 200, 50);
+		rentButton.setBounds(100, 350, 200, 70);
 		rentButton.addActionListener(rentAction);
 		this.add(userIdLabel);
 		this.add(userIdTextField);
 		this.add(bookIdLabel);
 		this.add(bookIdTextField);
+		this.add(limitLabel);
+		this.add(limitTextField);
 		this.add(rentButton);
 	}
 	

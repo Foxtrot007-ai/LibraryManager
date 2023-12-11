@@ -1,5 +1,7 @@
 package LibraryManager;
 
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;  
 import java.sql.*;
 import java.util.List;
 import java.util.Vector;
@@ -9,7 +11,12 @@ import javax.swing.table.DefaultTableModel;
 class DataBaseConnector{
 	Connection con;
 	Statement stmt;
-	public DataBaseConnector(String dataBaseName, String login, String password) {
+	String dataBaseName;
+	public DataBaseConnector(String dataBaseName) {
+		this.dataBaseName = dataBaseName;
+	}
+	
+	public void startConnection(String login, String password) {
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dataBaseName, login, password);  
@@ -49,10 +56,12 @@ class DataBaseConnector{
 		}catch(Exception e){ System.out.println(e);} 
 	}
 	
-	public void addRentalQuery(String UserId ,String BookId) {
+	public void addRentalQuery(String UserId ,String BookId, String Limit) {
 		String query = "INSERT INTO rentals (UserID, BookID, RentDate, DayLimit) VALUES ('"
-					 + UserId +"','"
-					 + BookId +"', '2001-07-14', '14')";
+					 + UserId +"', '"
+					 + BookId +"', '"
+					 + java.time.LocalDate.now().toString() +"', '"
+					 + Limit + "')";
 		try{  
 			stmt.executeUpdate(query);    
 		}catch(Exception e){ System.out.println(e);}  
