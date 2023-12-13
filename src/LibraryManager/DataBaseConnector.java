@@ -22,7 +22,7 @@ class DataBaseConnector{
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dataBaseName, login, password);  
 			stmt = con.createStatement();  
 			System.out.println("Connected :)");
-		}catch(Exception e){ System.out.println(e);}  
+		}catch(Exception e){ new ErrorSqlWindow(e);}  
 	}
 	
 	public void addUserQuery(String FirstName, String LastName, String Pesel) {
@@ -32,28 +32,28 @@ class DataBaseConnector{
 					+ Pesel + "');";
 		try{  
 			stmt.executeUpdate(query);  
-		}catch(Exception e){ System.out.println(e);}  
+		}catch(Exception e){ new ErrorSqlWindow(e);}  
 	}
 	
 	public void deleteUserQuery(String UserId) {
 		String query = "DELETE FROM users WHERE PersonID='" + UserId + "'";
 		try{  
 			stmt.executeUpdate(query);   
-		}catch(Exception e){ System.out.println(e);} 
+		}catch(Exception e){ new ErrorSqlWindow(e);} 
 	}
 	
 	public void addBookQuery(String BookTitle) {
 		String query = "INSERT INTO books (BookTitle) VALUES ('"+ BookTitle +"')";
 		try{  
 			stmt.executeUpdate(query);   
-		}catch(Exception e){ System.out.println(e);}  
+		}catch(Exception e){ new ErrorSqlWindow(e);}  
 	}
 	
 	public void deleteBookQuery(String BookId) {
 		String query = "DELETE FROM books WHERE BookID='" + BookId + "'";
 		try{  
 			stmt.executeUpdate(query);   
-		}catch(Exception e){ System.out.println(e);} 
+		}catch(Exception e){ new ErrorSqlWindow(e);} 
 	}
 	
 	public void addRentalQuery(String UserId ,String BookId, String Limit) {
@@ -64,14 +64,14 @@ class DataBaseConnector{
 					 + Limit + "')";
 		try{  
 			stmt.executeUpdate(query);    
-		}catch(Exception e){ System.out.println(e);}  
+		}catch(Exception e){ new ErrorSqlWindow(e);}  
 	}
 	
 	public void deleteRentalQuery(String BookId) {
 		String query = "DELETE FROM rentals WHERE BookID='" + BookId + "'";
 		try{  
 			stmt.executeUpdate(query);    
-		}catch(Exception e){ System.out.println(e);} 
+		}catch(Exception e){ new ErrorSqlWindow(e);} 
 	}
 	
 	public DefaultTableModel showRentalsQuery() {
@@ -87,7 +87,7 @@ class DataBaseConnector{
 				temp.add(rs.getString(4));
 				resultVector.add(temp);
 			}
-		}catch(Exception e){ System.out.println(e);}
+		}catch(Exception e){ new ErrorSqlWindow(e);}
 		
 		DefaultTableModel resultModel = new DefaultTableModel();
 		Vector<String> colNames = new Vector<String>();
@@ -112,7 +112,7 @@ class DataBaseConnector{
 				temp.add(rs.getString(4));
 				resultVector.add(temp);
 			}
-		}catch(Exception e){ System.out.println(e);}
+		}catch(Exception e){ new ErrorSqlWindow(e);}
 		
 		DefaultTableModel resultModel = new DefaultTableModel();
 		Vector<String> colNames = new Vector<String>();
@@ -135,7 +135,7 @@ class DataBaseConnector{
 				temp.add(rs.getString(2));
 				resultVector.add(temp);
 			}
-		}catch(Exception e){ System.out.println(e);}
+		}catch(Exception e){ new ErrorSqlWindow(e);}
 		
 		DefaultTableModel resultModel = new DefaultTableModel();
 		Vector<String> colNames = new Vector<String>();
