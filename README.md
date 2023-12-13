@@ -5,6 +5,10 @@ Made with Java swing and Mysql data base.
 
 Data Base name is hardcoded as librarydatabase in src/LibraryManager/LibraryApplication.java
 
+DataBaseConnector class connects to MySql Data Base on port 3306 and has functions for different Window UIs.
+
+Other classes implement UI, like forms for user/book add or delete.
+
 # Examples:
 
 ### Attempt to log in to the database
