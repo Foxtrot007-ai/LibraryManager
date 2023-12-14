@@ -10,7 +10,7 @@ import javax.swing.table.TableModel;
 
 public class MainWindow extends JFrame{
 	//data base
-	public DataBaseConnector connector;
+	public DataBaseConnectorProxy connector;
 	
 	//this frame
 	public int height = 1080;
@@ -112,6 +112,9 @@ public class MainWindow extends JFrame{
 	private Action loadChangeHistoryList = new AbstractAction("Load Change History") {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
+	    	DefaultTableModel resultModel = connector.showChangeHistory();
+	    	tableToShow.setModel(resultModel);
+	    	tableToShow.repaint();
 	    }
 	};
 	
@@ -204,7 +207,7 @@ public class MainWindow extends JFrame{
 		this.add(listScroller);
 	}
 	
-	public MainWindow(DataBaseConnector connector) {
+	public MainWindow(DataBaseConnectorProxy connector) {
 		this.connector = connector;
 		addUserOperationWindow = new AddUserOperationWindow(connector);
 		addBookOperationWindow = new AddBookOperationWindow(connector);

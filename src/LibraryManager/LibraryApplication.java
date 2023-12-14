@@ -3,9 +3,9 @@ package LibraryManager;
 public class LibraryApplication {
 	MainWindow mainWindow;
 	LoginWindow loginWindow;
-	DataBaseConnector dataBase;
+	DataBaseConnectorProxy dataBase;
 	public LibraryApplication(){
-		dataBase = new DataBaseConnector("librarydatabase");
+		dataBase = new DataBaseConnectorProxy("librarydatabase");
 		loginWindow = new LoginWindow(dataBase);
 		mainWindow = new MainWindow(dataBase);
 	}

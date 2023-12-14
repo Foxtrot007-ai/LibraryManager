@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class LoginWindow extends JFrame{
-	public DataBaseConnector connection;
+	public DataBaseConnectorProxy connection;
 	//login UI
 	public JTextField loginTextField = new JTextField();
 	public JTextField passwordTextField = new JTextField();
@@ -54,7 +54,7 @@ public class LoginWindow extends JFrame{
 		this.add(connectButton);
 	}
 	
-	public LoginWindow(DataBaseConnector connector) {
+	public LoginWindow(DataBaseConnectorProxy connector) {
 		this.connection = connector; 
 		initializeThisFrame();
 		initializeComponents();

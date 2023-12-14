@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class ReturnBookOperationWindow extends JFrame {
-	public DataBaseConnector connection;
+	public DataBaseConnectorProxy connection;
 	//Return book UI
 	public JTextField idTextField = new JTextField();
 	public JLabel idLabel = new JLabel("Book Id:");
@@ -44,7 +44,7 @@ public class ReturnBookOperationWindow extends JFrame {
 		this.add(returnButton);
 	}
 	
-	public ReturnBookOperationWindow(DataBaseConnector connector) {
+	public ReturnBookOperationWindow(DataBaseConnectorProxy connector) {
 		this.connection = connector; 
 		initializeThisFrame();
 		initializeReturnBookComponents();

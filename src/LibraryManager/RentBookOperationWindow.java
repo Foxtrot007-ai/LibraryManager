@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class RentBookOperationWindow extends JFrame {
-	public DataBaseConnector connection;
+	public DataBaseConnectorProxy connection;
 	//rental UI
 	public JTextField userIdTextField = new JTextField();
 	public JLabel userIdLabel = new JLabel("User Id:");
@@ -56,7 +56,7 @@ public class RentBookOperationWindow extends JFrame {
 		this.add(rentButton);
 	}
 	
-	public RentBookOperationWindow(DataBaseConnector connector) {
+	public RentBookOperationWindow(DataBaseConnectorProxy connector) {
 		this.connection = connector; 
 		initializeThisFrame();
 		initializeRentBookComponents();

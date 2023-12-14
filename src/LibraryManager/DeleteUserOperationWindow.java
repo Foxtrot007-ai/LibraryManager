@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class DeleteUserOperationWindow extends JFrame{
-	public DataBaseConnector connection;
+	public DataBaseConnectorProxy connection;
 	//delete user UI
 	public JTextField idTextField = new JTextField();
 	public JLabel idLabel = new JLabel("User Id");
@@ -44,7 +44,7 @@ public class DeleteUserOperationWindow extends JFrame{
 		this.add(deleteButton);
 	}
 	
-	public DeleteUserOperationWindow(DataBaseConnector connector) {
+	public DeleteUserOperationWindow(DataBaseConnectorProxy connector) {
 		this.connection = connector; 
 		initializeThisFrame();
 		initializeDeleteUserComponents();

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class DeleteBookOperationWindow extends JFrame{
-	public DataBaseConnector connection;
+	public DataBaseConnectorProxy connection;
 	//delete book UI
 	public JTextField idTextField = new JTextField();
 	public JLabel idLabel = new JLabel("Book Id:");
@@ -42,7 +42,7 @@ public class DeleteBookOperationWindow extends JFrame{
 		this.add(deleteButton);
 	}
 	
-	public DeleteBookOperationWindow(DataBaseConnector connector) {
+	public DeleteBookOperationWindow(DataBaseConnectorProxy connector) {
 		this.connection = connector; 
 		initializeThisFrame();
 		initializeDeleteBookComponents();

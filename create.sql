@@ -18,3 +18,11 @@ CREATE TABLE rentals (
     RentDate Date NOT NULL,
     DayLimit int NOT NULL
 );
+
+CREATE TABLE history (
+    changeID int NOT NULL AUTO_INCREMENT,
+    actionName varchar(255) NOT NULL,
+    actionVariables LONGTEXT NOT NULL,
+    dateOfChange date NOT NULL,
+    PRIMARY KEY(changeID)
+);

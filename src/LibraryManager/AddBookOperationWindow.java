@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class AddBookOperationWindow extends JFrame {
-	public DataBaseConnector connection;
+	public DataBaseConnectorProxy connection;
 	//add book UI
 	public JTextField bookTitleTextField = new JTextField();
 	public JTextField bookIdTextField = new JTextField();
@@ -51,7 +51,7 @@ public class AddBookOperationWindow extends JFrame {
 		this.add(addButton);
 	}
 	
-	public AddBookOperationWindow(DataBaseConnector connector) {
+	public AddBookOperationWindow(DataBaseConnectorProxy connector) {
 		this.connection = connector; 
 		initializeThisFrame();
 		initializeAddBookComponents();

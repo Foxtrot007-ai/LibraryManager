@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class AddUserOperationWindow extends JFrame {
-	public DataBaseConnector connection;
+	public DataBaseConnectorProxy connection;
 	//add user UI
 	public JTextField firstNameTextField = new JTextField();
 	public JTextField lastNameTextField = new JTextField();
@@ -62,7 +62,7 @@ public class AddUserOperationWindow extends JFrame {
 		this.add(addButton);
 	}
 	
-	public AddUserOperationWindow(DataBaseConnector connector) {
+	public AddUserOperationWindow(DataBaseConnectorProxy connector) {
 		this.connection = connector; 
 		initializeThisFrame();
 		initializeAddUserComponents();
