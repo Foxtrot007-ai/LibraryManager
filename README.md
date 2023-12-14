@@ -9,6 +9,11 @@ DataBaseConnector class connects to MySql Data Base on port 3306 and has functio
 
 Other classes implement UI, like forms for user/book add or delete.
 
+**(NEW)** 
+
+DataBaseConnectorProxy uses Proxy pattern to made send sql insert queries when user adds/removes users/books/rentals. 
+It's made by override base methods and using base methods with keyword super.
+
 # Examples:
 
 ### Attempt to log in to the database
@@ -31,3 +36,7 @@ Other classes implement UI, like forms for user/book add or delete.
   <img src="https://github.com/Foxtrot007-ai/LibraryManager/blob/main/Screenshots/Screenshot_5.png"  >
 </p> 
 
+### Change History (NEW)
+<p align="center">
+  <img src="https://github.com/Foxtrot007-ai/LibraryManager/blob/main/Screenshots/Screenshot_6.png"  >
+</p> 
